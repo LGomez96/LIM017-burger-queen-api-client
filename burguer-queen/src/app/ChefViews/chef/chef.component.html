@@ -1,0 +1,36 @@
+<section class="homeContainer">
+  <section class="homeChef">
+    <nav>
+      <div class="profile">
+        <i class="fa-solid fa-circle-user"></i>
+        <h4>Chef</h4>
+      </div>
+      <div class="navOptions">
+        <div class="logOut" routerLink="" (click)="logOut()">
+          <img src="assets\img\cerrar-sesion.png">
+        </div>
+      </div>
+    </nav>
+   <section class="chefContainer">
+      <div class="chefOptions">
+        <div  routerLink="pending" (click)="setStateOfViewPending()"
+          [className]="renderViewControler === 'pending' ? 'selectPending' : 'unselectedPending'">
+          <i class="fa-solid fa-clock"></i>
+          <p>Ordenes Pendientes</p>
+        </div>
+
+        <div routerLink="delivered" (click)="setStateOfViewdelivering()"
+        [className]="renderViewControler === 'delivering' ? 'selectDelivering' : 'unselectedDelivering'">
+        <i class="fa-solid fa-clipboard-check"></i>
+        <p>Ordenes Listas</p>
+      </div>
+      </div>
+
+    </section>
+  </section>
+
+  <section class="containerHomeChefBody">
+    <router-outlet></router-outlet>
+  </section>
+
+</section>

@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, retry } from 'rxjs';
 import { Order, LoginResponse, User, Credentials } from '../app.module';
 import { Router } from '@angular/router';
+import { Product } from 'src/waiter/waiter.service';
 
 
 
@@ -11,8 +12,8 @@ import { Router } from '@angular/router';
 })
 export class MenuService {
 
-  private apiUrl = 'http://localhost:8080/orders';
-  private urlProducts = ' http://localhost:8080/products';
+  private apiUrl = 'http://localhost:8080/orders/';
+  private urlProducts = ' http://localhost:8080/products/';
   private urlUser = ' http://localhost:8080/';
   public user = {
     email: '',
@@ -48,7 +49,7 @@ export class MenuService {
           this.router.navigate(['/admin']);
 
         } else if (res.roles === 'waiter') {
-          this.router.navigate(['/waiter'])
+          this.router.navigate(['/products'])
         } else if(res.roles === 'chef'){
           this.router.navigate(['/chef'])
         } else {
@@ -83,8 +84,13 @@ export class MenuService {
   
 
   //obtener productos
-  getProduct(): Observable<Order[]> {
-    return this.http.get<Order[]>(this.urlProducts, this.httpOptions());
+  getProduct(): Observable<Product[]> {
+    return this.http.get<Product[]>(this.urlProducts, this.httpOptions());
+  }
+
+  getProductId(product: any): Observable<void> {
+
+    return this.http.get<void>(`${this.urlProducts}${product.id}`, this.httpOptions())
   }
   
   // añadir productos
@@ -103,8 +109,15 @@ export class MenuService {
     return this.http.delete<void>(`${this.urlUser}users/${id}`, this.httpOptions())
   }
 
-  update(product: any, body: any): Observable<void> {  
-      return this.http.patch<void>(`${this.urlProducts}/${product.id}`, body,  this.httpOptions() )
+  updateProduct( data: any, id:number): Observable<void> {  
+    console.log('id', id)
+    console.log('data', data)
+      return this.http.patch<void>(`${this.urlProducts}${id}`, data,  this.httpOptions() )
+  }
+  updateOrder(data: any, id:number): Observable<void> {
+    console.log('id', id)
+    console.log('data', data)
+    return this.http.patch<void>(`${this.apiUrl}${id}`, data, this.httpOptions())
   }
 //   sumar(id: string)Observable<void> {
 //   return this.http.post<void>(`${this.urlProducts}/${id}`, this.httpOptions())

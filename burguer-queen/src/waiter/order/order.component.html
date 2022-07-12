@@ -1,51 +1,57 @@
-<h1>MENU</h1>
-<div class="rown">
-  <div class="imgBreakfast">
-    <img src="./assets/img/breakfast.svg" alt="Desayunos" class="breakfast">
-    <img src="./assets/img/Hamburger.svg" alt="Almuerzos y cenas" class="lunch">
+<ng-container *ngIf="products.length != 0">
+  <h1 mat-dialog-title> Añadir Ordenes</h1>
+  <div mat-dialog-content>
+    <form [formGroup]="form">
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre del cliente</mat-label>
+        <input formControlName="client" matInput placeholder="Placeholder">
+        <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+        <!-- <mat-hint>Hint</mat-hint> -->
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>userId</mat-label>
+        <input formControlName="userId" matInput placeholder="Placeholder">
+        <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+        <!-- <mat-hint>Hint</mat-hint> -->
+      </mat-form-field>
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Choose a date</mat-label>
+        <input formControlName="dateEntry" matInput type="datetime-local">
+        
+      </mat-form-field>
+      <mat-card class="listOrder" *ngFor="let product of products; let i = index">
+        <div>
+          <p class="productName">{{product.name}}</p>
+          <p class="price">{{product.total | currency}}</p>
+          <div class="example-button-container">
+            <button (click)="removeItem(product)" mat-mini-fab color="warn" aria-label="Example icon button with a filter list icon">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </div>
+      </mat-card>
+    </form>
   </div>
-</div>
-<!-- Para ver los productos y tomar pedidos -->
-<a routerLink="products">Tomar pedido</a>
-<router-outlet></router-outlet>
+  <div class="example-button-container">
+    <button (click)="emptyCart()" mat-stroked-button color="warn">Eliminar todo
+      <mat-icon>delete</mat-icon>     
+    </button>   
+     </div>
+   <p>El total es: ${{totalOrder}}</p>
+   <button (click)="addOrder()" mat-stroked-button color="accent">Enviar Orden
+    <mat-icon>send</mat-icon>
+  </button>
 
-<!-- Menú de desayunos -->
+</ng-container>
 
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <!-- <app-login-component></app-login-component> -->
-    </div>
-    <div class="col-md-4">
-      <div class="http" *ngFor="let product of menu ">
-        <!-- //posible cambiar a tabla -->
-        <ul class="list-group">
-          <li class="list-group-item">
-            {{product.client}}
-            {{product.id}} <br>
-            {{product.status}} <br>
-            {{product.dataEntry}} <br>
-            {{ product.products[0].product.name}} <br>
-            {{ product.products[0].product.price}} <br>
-            {{ product.products[0].product.type}} <br>
-            <img src="{{ product.products[0].product.image}}" alt=""> <br>
-            </li>
-            <li class="list-group-item"> 
-            {{ product.products[1].product.name}} <br>
-            {{ product.products[1].product.price}} <br>
-            {{ product.products[1].product.type}} <br>
-            <img src="{{ product.products[1].product.image}}" alt=""> <br>
-            <button type="button" class="btn btn-danger float-end">Delete</button>
-          </li>
-        </ul>
+
+<ng-container *ngIf="products.length === 0">
+  <section fxFlexAlign="center" class="containerCart" [dir]="direction">
+    <div class="cartEmpty">
+      <p>Aun no se agregaron productos</p>
+      <div class="icon">
+        <mat-icon> fastfood</mat-icon>
       </div>
-     
-      <!-- <img src="./assets/img/Coffee.svg"> -->
     </div>
-  </div>
-</div>
-
-<!-- 
-<a href="https://storyset.com/work">Work illustrations by Storyset</a>  chefcito 
-<a href="https://storyset.com/business">Business illustrations by Storyset</a> admin
--->
+  </section>
+</ng-container>

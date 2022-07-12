@@ -1,0 +1,32 @@
+<section class="cardsContainer">
+  <section class="content">
+    <div fxLayout="row wrap" fxLayoutGap="16px grid">
+      <div fxFlex="25%" fxFlex.xs="80%" fxFlex.sm="33%" *ngFor="let order of menuPending">
+        <mat-card class="example-card">
+          <p class="title">Orden número: {{order.id}}</p>
+          <mat-card-content>
+            
+            <p (click)="updateStatus(order.id)" class="status">Estado: {{order.status}}</p>
+            <p class="date">Fecha de pedido: {{order.dataEntry | date: 'dd/MM/yyyy HH:mm'}}</p>
+            <!-- <p class="date">Fecha de entrega: {{orderData.dateProcessed}}</p> -->
+            <p class="client">Cliente: {{order.client}}</p>
+            <div class="productsList" *ngFor="let product of order.products">
+              <div>
+                <img mat-card-image src="{{product.image}}" alt="Photo of product">
+                <p class="quantity">{{product.qty}}</p>
+                <p>{{product.name}}</p>
+                <p> {{product.type}} </p>
+              </div>
+              <p class="price">{{product.price | currency }}</p>
+            </div>
+            <div class="options" *ngIf="(order.status === 'pending')">
+              <button mat-stroked-button class="btndelivered" (click)="getOrdersPending()" >Listo</button>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </section>
+</section>
+
+

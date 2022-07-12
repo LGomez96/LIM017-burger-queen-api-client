@@ -1,8 +1,4 @@
-ul {
-    list-style-type: none;
-}
-.breakfast{
-    margin-top: 10%;
+/* .breakfast{
     width: 95px;
     height: 95px;
     margin: 50px;
@@ -20,14 +16,8 @@ ul {
     position: relative;
     left: 40%;
 }
+ul {
+    list-style-type: none;
+} */
 
-h1{
-    text-align: center;
-}
-a{
-    color: #FB727C;
-    text-align: center;
-    font-size: 27px;
-    font-family: 'Inter', sans-serif;
-    margin:20px;
-}
+  

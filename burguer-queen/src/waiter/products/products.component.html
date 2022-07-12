@@ -1,0 +1,35 @@
+
+<mat-icon routerLink="waiter" aria-hidden="false" aria-label="Example home icon">restaurant_menu</mat-icon>
+<router-outlet></router-outlet>
+<section class="content" [dir]="directionOrder"></section>
+<mat-card-actions>
+  <button mat-button (click)="openDialog()">Agregar</button>
+</mat-card-actions>
+<div fxLayout="row wrap" fxLayoutGap="16px grid">
+  <div fxFlex="25%" fxFlex.xs="80%" fxFlex.sm="33%" *ngFor=" let product of arrayMenu ">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>{{product.name}} </mat-card-title>
+        <mat-card-subtitle>{{product.id}}</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image src="{{product.image}}" alt="Photo of product">
+      <mat-card-content>
+        <p>
+          $ {{product.price}}
+        </p>
+      </mat-card-content>
+      <div class="quantity" fxFelx="40%" fxLayout="row wrap">
+        <mat-icon (click)="upQuantity(product)" class="fa-solid fa-circle-minus" >add_circle</mat-icon>
+        <p> {{product.quantity}} </p>
+         <mat-icon (click)=" downQuantity(product)" class="fa-solid fa-circle-minus">remove_circle</mat-icon>
+      </div>
+      <mat-card-actions>
+        <button mat-button>Añadir al carrito</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
+<mat-card-actions>
+  <button (click)="logOut()" routerLink="" mat-button>Salir</button>
+</mat-card-actions>
