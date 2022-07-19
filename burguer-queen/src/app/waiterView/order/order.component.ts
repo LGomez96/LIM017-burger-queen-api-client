@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
-import { MenuService } from '../../app/services/menu.service';
-import { Order } from '../../app/app.module';
+import { MenuService } from '../../services/menu.service';
+import { Order } from '../../app.module';
 import { Product, ProductCart, WaiterService } from '../waiter.service';
 import { Direction } from '@angular/cdk/bidi';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -82,5 +82,7 @@ export class OrderComponent implements OnInit {
   emptyCart(){
     this.waiterService.removeAllCart()
   }
-
+  logOut(){
+    localStorage.clear();
+  }
 }

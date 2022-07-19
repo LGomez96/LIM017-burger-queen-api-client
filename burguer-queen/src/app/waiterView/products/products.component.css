@@ -1,0 +1,77 @@
+img {
+  width: 100px;
+  height: 100px;
+  align-content: center;
+  position: relative;
+  left: 35%;
+}
+
+.example-card {
+  max-width: 500px;
+}
+
+.example-header-image {
+  background-image: url('../../../assets/img/Hamburger.svg');
+  background-size: cover;
+}
+
+.example-container {
+  width: 400px;
+  height: 200px;
+  margin: 10px;
+  border: 1px solid #555;
+}
+
+.iconOrders {
+  position: relative;
+  left: 46%;
+  width: 80px;
+  height: 80px;
+  font-size: 50px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.iconOrder {
+  position: relative;
+  left: 44%;
+  width: 120px;
+  height: 80px;
+  font-size: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  top: -30px;
+}
+
+
+.price {
+  font-size: 25px;
+}
+
+.containerCounter {
+  flex-direction: column;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+}
+
+.quantity {
+  align-items: center;
+  /* align-self: center; */
+  flex-direction: row;
+  display: flex;
+
+}
+#qty{
+  padding: 2px;
+  font-size: 20px;
+  margin-bottom: 0px;
+}
+.mat-card-actions{
+ display: flex;
+ flex-direction: row-reverse;
+ margin: 18% 2% 5% 2%;
+}

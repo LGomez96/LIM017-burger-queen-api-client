@@ -1,28 +1,25 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { HttpErrorResponse } from '@angular/common/http';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { MenuService } from './menu.service';
 import { of, throwError } from 'rxjs';
-import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing'
 
 describe('MenuService', () => {
   let service: MenuService;
-  let httpClientSpy: { post: jasmine.Spy }; //mock del metodo get con jasmine
-
+  let httpTestingController : HttpTestingController;
   beforeEach(() => {
-    let routerSpy = jasmine.createSpyObj<Router>('Router', ['navigate'])
+    //let routerSpy = jasmine.createSpyObj<Router>('Router', ['navigate'])
 
     TestBed.configureTestingModule({
       imports: [
         HttpClientTestingModule,
         RouterTestingModule
       ],
-      // schemas: [ CUSTOM_ELEMENTS_SCHEMA],
+    
     });
-    httpClientSpy = jasmine.createSpyObj('HttpClient', ['post']);
-    service = new MenuService(routerSpy as any, httpClientSpy as any);
+    httpTestingController = TestBed.inject(HttpTestingController );
+    service = TestBed.inject(MenuService);
   });
 
 
@@ -31,7 +28,7 @@ describe('MenuService', () => {
   });
 
   //TODO: Debe retornar objecto del 
-  it('Should return obj (Login ok)', (done: DoneFn) => {
+  it('Should return obj (Login ok)', () => {
     //TODO: Mock de datos!
     const mockCredentials = {
       email: 'alguien@adb.com',
@@ -42,18 +39,17 @@ describe('MenuService', () => {
       accessToken: "sd46s5a4da1sd435"
     }
 
-    httpClientSpy.post.and.returnValue(of(mockResult));  //TODO: Observable
-
-    // const { email, password} = mockCredentials
-
     service.loginUsers(mockCredentials)
       .subscribe(res => { //TODO:Hacer que de por finalizado la prueba:
         expect(res).toEqual(mockResult)
-        done();
+        
       })
-  })
+      const req = httpTestingController.expectOne({ method: 'POST'})
+      console.log('xxxxxx',req)
+      req.flush(mockResult);
+    })
   // TODO:Una respuesta incorrecta :400
-  it(' should return an error 400', (done: DoneFn) => {
+  it(' should return an error 400', () => {
     //TODO: mock de datos
     const invalidCredential = {
       email: 'adaj@ahd.com',
@@ -65,7 +61,7 @@ describe('MenuService', () => {
       statusText: 'Not Found'
     })
     
-    httpClientSpy.post.and.returnValue(throwError(resultMock))
+    //httpClientSpy.post.and.returnValue(throwError(resultMock))
     //TODO:
     // const { email, password } = invalidCredential
     service.loginUsers(invalidCredential)
@@ -75,9 +71,12 @@ describe('MenuService', () => {
         },
         error: error => {
           expect(error.status).toEqual(400);
-          done()
+          
         }
       })
+      const req = httpTestingController.expectOne({ method: 'POST'})
+      console.log('yyyyyyyy',req)
+      req.flush(resultMock);
   })
 
 });

@@ -1,0 +1,24 @@
+.containerOrder{
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    width: 50%;
+    margin-left: 25%;
+}
+.formOrder{
+    display: flex;
+    flex-direction: column;
+}
+.cardOrder{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.productName{
+    margin-top: 2.5%;
+}
+.price{
+    margin-top: 2.5%;
+}
+
+  

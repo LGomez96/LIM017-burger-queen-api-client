@@ -1,0 +1,68 @@
+<div id="btns">
+    <button (click)="toggleShowDelivered()" mat-stroked-button color="warn" id="btnDelivered">Delivered</button>
+    <button (click)="toggleShowReadyOrders()" mat-stroked-button color="warn" id="btnReady">Up Ready</button>
+</div>
+
+<section id="showOrders">
+    <ng-container *ngIf="isShownDelivered" id="delivered">
+        <!-- aqui va pedidos delivered -->
+        <div fxLayout="row wrap" fxLayoutGap="16px grid">
+            <div id="cards" fxFlex="25%" fxFlex.xs="80%" fxFlex.sm="33%" *ngFor="let order of menuDelivered">
+                <mat-card class="example-card">
+                    <div mat-card-avatar class="example-header-image"></div>
+
+                    <mat-card-title class="title">Orden número: {{order.id}}</mat-card-title>
+                    <mat-card-content>
+
+                        <h2 (click)=" updateStatus(order.id)" class="status">Estado: {{order.status}}</h2>
+                        <p class="date">Fecha de pedido: {{order.dataEntry | date: 'dd/MM/yyyy HH:mm'}}</p>
+                        <!-- <p class="date">Fecha de entrega: {{orderData.dateProcessed}}</p> -->
+                        <p class="client">Cliente: {{order.client}}</p>
+                        <div class="productsList" *ngFor="let product of order.products">
+                            <div>
+                                <img mat-card-image src="{{product.image}}" alt="Photo of product" id="imgCard">
+                                <p class="quantity">{{product.qty}}</p>
+                                <p>{{product.name}}</p>
+                                <p> {{product.type}} </p>
+                            </div>
+                            <p class="price">{{product.price | currency }}</p>
+                        </div>
+                        <div class="options" *ngIf="(order.status === 'pending')">
+                            <button mat-stroked-button class="btndelivered"
+                                (click)="getOrdersDelivered()">Listo</button>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="isShownReadyOrders" id="readyOrders">
+        <!-- aqui va pedidos listos -->
+        <div fxLayout="row wrap" fxLayoutGap="16px grid">
+            <div id="cardsReady" fxFlex="25%" fxFlex.xs="80%" fxFlex.sm="33%" *ngFor="let order of menuDelivered">
+                <mat-card class="example-card">
+                    <p class="title">Orden número: {{order.id}}</p>
+                    <mat-card-content>
+
+                        <p class="status">Estado: {{order.status}}</p>
+                        <p class="date">Fecha de pedido: {{order.dataEntry | date: 'dd/MM/yyyy HH:mm'}}</p>
+                        <!-- <p class="date">Fecha de entrega: {{orderData.dateProcessed}}</p> -->
+                        <p class="client">Cliente: {{order.client}}</p>
+                        <div class="productsList" *ngFor="let product of order.products">
+                            <div>
+                                <img mat-card-image src="{{product.image}}" alt="Photo of product" id="imgCardReady">
+                                <p class="quantity">{{product.qty}}</p>
+                                <p>{{product.name}}</p>
+                                <p> {{product.type}} </p>
+                            </div>
+                            <p class="price">{{product.price | currency }}</p>
+                        </div>
+                        <div class="options" *ngIf="(order.status === 'up ready to server')">
+                            <button mat-stroked-button class="btndelivered" (click)="getOrdersReady()">Listo</button>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+    </ng-container>
+</section>

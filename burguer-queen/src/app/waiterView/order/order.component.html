@@ -1,7 +1,8 @@
 <ng-container *ngIf="products.length != 0">
+  <section class="containerOrder">
   <h1 mat-dialog-title> Añadir Ordenes</h1>
   <div mat-dialog-content>
-    <form [formGroup]="form">
+    <form [formGroup]="form" class="formOrder">
       <mat-form-field appearance="outline">
         <mat-label>Nombre del cliente</mat-label>
         <input formControlName="client" matInput placeholder="Placeholder">
@@ -20,14 +21,14 @@
         
       </mat-form-field>
       <mat-card class="listOrder" *ngFor="let product of products; let i = index">
-        <div>
+        <div class="cardOrder">
           <p class="productName">{{product.name}}</p>
           <p class="price">{{product.total | currency}}</p>
           <div class="example-button-container">
             <button (click)="removeItem(product)" mat-mini-fab color="warn" aria-label="Example icon button with a filter list icon">
               <mat-icon>delete</mat-icon>
             </button>
-          </div>
+          </div> 
         </div>
       </mat-card>
     </form>
@@ -38,10 +39,12 @@
     </button>   
      </div>
    <p>El total es: ${{totalOrder}}</p>
-   <button (click)="addOrder()" mat-stroked-button color="accent">Enviar Orden
+   <button (click)="addOrder()" mat-stroked-button color="accent" id="btnSend">Enviar Orden
     <mat-icon>send</mat-icon>
   </button>
-
+  <button (click)="logOut()" mat-stroked-button color="warn" id="btnClose">Salir
+  </button>
+</section>
 </ng-container>
 
 
@@ -49,9 +52,6 @@
   <section fxFlexAlign="center" class="containerCart" [dir]="direction">
     <div class="cartEmpty">
       <p>Aun no se agregaron productos</p>
-      <div class="icon">
-        <mat-icon> fastfood</mat-icon>
-      </div>
     </div>
   </section>
 </ng-container>

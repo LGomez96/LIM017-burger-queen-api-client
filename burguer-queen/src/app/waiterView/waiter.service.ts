@@ -25,6 +25,8 @@ export interface ProductCart {
 })
 export class WaiterService {
 
+  isShowComponent: boolean = true;
+  isShowOrders: boolean = true;
   arrayProducts: any = [];
   public productList = new BehaviorSubject<any>([]);
   constructor() { }
@@ -64,6 +66,6 @@ export class WaiterService {
     this.productList.next(this.arrayProducts);
     console.log("array con productos del cliente", this.arrayProducts)
   }
-
+ 
  
 }

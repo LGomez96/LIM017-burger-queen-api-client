@@ -16,10 +16,10 @@ export class ChefComponent implements OnInit {
   ngOnInit(): void {  }
 
   
-  setStateOfViewPending(){
+  renderViewPending(){
     this.renderViewControler = "pending"
   }
-  setStateOfViewdelivering(){
+  renderViewdelivering(){
     this.renderViewControler = "delivered"
   }
 

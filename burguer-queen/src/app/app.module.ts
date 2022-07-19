@@ -6,17 +6,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponentComponent } from './login-component/login-component.component';
 import { AdminComponent } from './adminViews/admin/admin.component';
-import { OrderComponent } from '../waiter/order/order.component';
-import { RegisterComponent } from './register/register.component';
+import { OrderComponent } from './waiterView/order/order.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { HomeComponent } from './home/home.component';
 import { MenuService } from './services/menu.service';
 import { AuthGuard } from './auth/auth.guard';
-import { EmployeesComponent } from './employees/employees.component';
+import { EmployeesComponent } from './adminViews/employees/employees.component';
 import { ResolveStart } from '@angular/router';
 import { ChefComponent } from './ChefViews/chef/chef.component';
-import { ProductsComponent } from '../waiter/products/products.component';
+import { ProductsComponent } from './waiterView/products/products.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
@@ -27,17 +26,21 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatInputModule} from '@angular/material/input'; 
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import { ModalComponent } from '../waiter/modal/modal.component'; 
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { FormModalComponent } from './adminViews/form-modal/form-modal.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import {MatTableModule} from '@angular/material/table'; 
-import {MatIconModule} from '@angular/material/icon'; 
+import {MatIconModule} from '@angular/material/icon';
+import { EmployeesModalComponent } from './adminViews/employees-modal/employees-modal.component'; 
 import {BidiModule} from '@angular/cdk/bidi';
 import { PendingStatusComponent } from './ChefViews/pending/pending-status.component';
 import { DeliveredStatusComponent } from './ChefViews/delivered-status/delivered-status.component';
+import { ReadyOrdersComponent } from './waiterView/ready-orders/ready-orders.component';
+import { TotalproductComponent } from './adminViews/totalproduct/totalproduct.component';
+
+
 
 @NgModule({
   declarations: [
@@ -45,20 +48,21 @@ import { DeliveredStatusComponent } from './ChefViews/delivered-status/delivered
     LoginComponentComponent,
     AdminComponent,
     OrderComponent,
-    RegisterComponent,
     NavbarComponent,
     PagenotfoundComponent,
     HomeComponent,
     EmployeesComponent,
     ChefComponent,
     ProductsComponent,
-    ModalComponent,
     FormModalComponent,
+    EmployeesModalComponent,
     PendingStatusComponent,
-    DeliveredStatusComponent
+    DeliveredStatusComponent,
+    ReadyOrdersComponent,
+    TotalproductComponent,
+
   ],
   imports: [
-    BidiModule,
     MatIconModule,
     MatTableModule,
     MatSortModule,
@@ -113,6 +117,7 @@ export interface LoginResponse {
 
 export interface User {
   id: string;
+  password: string;
   email: string;
   roles: string;
  }

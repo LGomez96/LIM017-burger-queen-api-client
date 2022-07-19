@@ -1,4 +1,27 @@
+body{
+    background: url('../../../assets/img/Picsart_22-07-15_11-24-06-898.png');
+    background-size: cover;
+}
 img{
     width: 100px;
     height: 100px;
 }
+.example-container {
+    width: 100%;
+    height: 100%;
+    background-color: #ffff;
+  }
+  
+  .example-sidenav-content {
+    display: flex;
+    height: 100%;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    margin-top: 2%;
+    width: 100%;
+  }
+  
+  .example-sidenav {
+    padding: 20px;
+  }
+ 

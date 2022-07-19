@@ -1,32 +1,34 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { AdminComponent } from './admin.component';
 import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { TotalproductComponent } from './totalproduct.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 
-describe('AdminComponent', () => {
-  let component: AdminComponent;
-  let fixture: ComponentFixture<AdminComponent>;
+describe('TotalproductComponent', () => {
+  let component: TotalproductComponent;
+  let fixture: ComponentFixture<TotalproductComponent>;
 
   beforeEach(async () => {
     let matDialogService: jasmine.SpyObj<MatDialog>;
     matDialogService = jasmine.createSpyObj<MatDialog>('MatDialog', ['open']);
     await TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule,
+      imports: [
+        HttpClientTestingModule,
         RouterTestingModule,
-        ReactiveFormsModule],
-        providers:  [
-          {
-            provide: MatDialog,
-            useValue: matDialogService,
-          }
-        ],
-      declarations: [AdminComponent]
+        ReactiveFormsModule
+      ],
+      providers: [
+        {
+          provide: MatDialog,
+          useValue: matDialogService,
+        }
+      ],
+      declarations: [ TotalproductComponent ]
     })
-      .compileComponents();
+    .compileComponents();
 
-    fixture = TestBed.createComponent(AdminComponent);
+    fixture = TestBed.createComponent(TotalproductComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

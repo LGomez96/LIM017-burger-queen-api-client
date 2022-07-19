@@ -1,0 +1,54 @@
+#imgCard{
+    width: 100px;
+    height: 100px;
+    align-content: center;
+    position: relative;
+    left: 30%;
+    margin-top: 0px;
+    padding: 5px;
+}
+#imgCardReady{
+    width: 100px;
+    height: 100px;
+    align-content: center;
+    position: relative;
+    left: 30%;
+    margin-top: 0px;
+    padding: 5px;
+}
+.example-header-image {
+    background-image: url('../../../assets/img/Hamburger.svg');
+    background-size: cover;
+  }
+.mat-card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+#showOrders{
+    width: 100%;
+    background:linear-gradient(to bottom, #f2a649 , #ffd483 );
+    padding-right: 0%;
+}
+#btns{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 50px;
+}
+#cards{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin: 4% 0 3% 0%;
+    justify-content: space-evenly;
+}
+#cardsReady{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin: 4% 0 3% 0%;
+    justify-content: space-evenly;
+}

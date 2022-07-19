@@ -1,8 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-
+import { RouterTestingModule } from '@angular/router/testing';
 import { OrderComponent } from './order.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 describe('OrderComponent', () => {
@@ -13,12 +14,15 @@ describe('OrderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
-      declarations: [ OrderComponent ],
-      schemas: [ NO_ERRORS_SCHEMA   ]
-      
+      imports: [
+        HttpClientTestingModule,
+        RouterTestingModule,
+        ReactiveFormsModule],
+      declarations: [OrderComponent],
+      schemas: [NO_ERRORS_SCHEMA]
+
     })
-    .compileComponents();
+      .compileComponents();
 
 
     fixture = TestBed.createComponent(OrderComponent);

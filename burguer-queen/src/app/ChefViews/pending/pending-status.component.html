@@ -1,7 +1,7 @@
 <section class="cardsContainer">
   <section class="content">
-    <div fxLayout="row wrap" fxLayoutGap="16px grid">
-      <div fxFlex="25%" fxFlex.xs="80%" fxFlex.sm="33%" *ngFor="let order of menuPending">
+    <div  id="mat-card"  fxLayoutGap="2%" fxLayout="row wrap">
+      <div id="containerCards" fxFlex="25%" fxFlex.xs="80%" fxFlex.sm="33%" *ngFor="let order of menuPending">
         <mat-card class="example-card">
           <p class="title">Orden número: {{order.id}}</p>
           <mat-card-content>
@@ -12,14 +12,13 @@
             <p class="client">Cliente: {{order.client}}</p>
             <div class="productsList" *ngFor="let product of order.products">
               <div>
-                <img mat-card-image src="{{product.image}}" alt="Photo of product">
+              
                 <p class="quantity">{{product.qty}}</p>
                 <p>{{product.name}}</p>
-                <p> {{product.type}} </p>
+                <p> cantidad: {{product.quantity}} </p>
               </div>
-              <p class="price">{{product.price | currency }}</p>
             </div>
-            <div class="options" *ngIf="(order.status === 'pending')">
+            <div class="options" *ngIf="(order.status === 'up ready to server')">
               <button mat-stroked-button class="btndelivered" (click)="getOrdersPending()" >Listo</button>
             </div>
           </mat-card-content>

@@ -1,21 +1,21 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { DeliveredStatusComponent } from './delivered-status.component';
+import { ReadyOrdersComponent } from './ready-orders.component';
 import { RouterTestingModule } from '@angular/router/testing';
 
-describe('DeliveredStatusComponent', () => {
-  let component: DeliveredStatusComponent;
-  let fixture: ComponentFixture<DeliveredStatusComponent>;
+describe('ReadyOrdersComponent', () => {
+  let component: ReadyOrdersComponent;
+  let fixture: ComponentFixture<ReadyOrdersComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [HttpClientTestingModule,
       RouterTestingModule],
-      declarations: [ DeliveredStatusComponent ]
+      declarations: [ ReadyOrdersComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(DeliveredStatusComponent);
+    fixture = TestBed.createComponent(ReadyOrdersComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

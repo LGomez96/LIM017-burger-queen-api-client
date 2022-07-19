@@ -1,0 +1,42 @@
+<mat-icon class="iconOrders" routerLink="waiter" aria-hidden="false" aria-label="Example home icon">restaurant_menu
+</mat-icon>
+<p class="iconOrder"> Añadir Ordenes
+</p>
+<mat-icon (click)="toggleHide()" class="iconOrders" routerLink="orders" aria-label="Example home icon"> fastfood
+</mat-icon>
+<p class="iconOrder"> Ver Ordenes
+</p>
+<router-outlet></router-outlet>
+<ng-container *ngIf="isShowComponent">
+  <section class="content" [dir]="directionOrder"></section>
+
+  <div fxLayout="row wrap" fxLayoutGap="16px grid">
+    <div fxFlex="25%" fxFlex.xs="80%" fxFlex.sm="33%" *ngFor=" let product of arrayMenu ">
+      <mat-card class="example-card">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>{{product.name}} </mat-card-title>
+          <mat-card-subtitle>{{product.id}}</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image src="{{product.image}}" alt="Photo of product">
+        <mat-card-content>
+          <div class="containerCounter">
+            <p class="price">
+              $ {{product.price}}
+            </p>
+            <div class="quantity" fxFlex="40%">
+              <mat-icon (click)="upQuantity(product)" class="fa-solid fa-circle-minus">add_circle</mat-icon>
+              <p id="qty"> {{product.quantity}} </p>
+              <mat-icon (click)=" downQuantity(product)" class="fa-solid fa-circle-minus">remove_circle</mat-icon>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</ng-container>
+  <mat-card-actions>
+    <button (click)="showProducts()" routerLink="/products" mat-stroked-button color="warn" id="btnReverse">
+      <mat-icon>arrow_back</mat-icon> Regresar </button>
+    <button (click)="logOut()" routerLink="" mat-stroked-button color="warn">Salir</button>
+  </mat-card-actions>

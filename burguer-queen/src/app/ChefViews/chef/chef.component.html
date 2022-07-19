@@ -1,36 +1,30 @@
-<section class="homeContainer">
-  <section class="homeChef">
-    <nav>
-      <div class="profile">
-        <i class="fa-solid fa-circle-user"></i>
-        <h4>Chef</h4>
-      </div>
-      <div class="navOptions">
-        <div class="logOut" routerLink="" (click)="logOut()">
-          <img src="assets\img\cerrar-sesion.png">
+  <section class="containerChef">
+    <section class="chefContainer">
+      <mat-drawer-container class="example-container" autosize>
+        <mat-drawer #drawer class="example-sidenav" mode="side">
+          <div class="chefOptions">
+            <div routerLink="pending" (click)="renderViewPending()"
+              [className]="renderViewControler === 'pending' ? 'selectPending' : 'unselectedPending'">
+              <i class="fa-solid fa-clock"></i>
+              <p>Ordenes Pendientes</p>
+            </div>
+            <div routerLink="delivered" (click)="renderViewdelivering()"
+              [className]="renderViewControler === 'delivered' ? 'selectDelivering' : 'unselectedDelivering'">
+              <i class="fa-solid fa-clipboard-check"></i>
+              <p>Ordenes Listas</p>
+            </div>
+          </div>
+          <section class="containerHomeChefBody">
+            <button routerLink="" (click)="logOut()" mat-stroked-button color="warn">cerrar Sesion</button>
+          </section>
+        </mat-drawer>
+        <div class="example-sidenav-content">
+          <button id="btnShowNav" type="button" mat-button (click)="drawer.toggle()">
+            Ver Ordenes
+          </button>
+          <router-outlet></router-outlet>
         </div>
-      </div>
-    </nav>
-   <section class="chefContainer">
-      <div class="chefOptions">
-        <div  routerLink="pending" (click)="setStateOfViewPending()"
-          [className]="renderViewControler === 'pending' ? 'selectPending' : 'unselectedPending'">
-          <i class="fa-solid fa-clock"></i>
-          <p>Ordenes Pendientes</p>
-        </div>
-
-        <div routerLink="delivered" (click)="setStateOfViewdelivering()"
-        [className]="renderViewControler === 'delivering' ? 'selectDelivering' : 'unselectedDelivering'">
-        <i class="fa-solid fa-clipboard-check"></i>
-        <p>Ordenes Listas</p>
-      </div>
-      </div>
-
+      </mat-drawer-container>
     </section>
   </section>
 
-  <section class="containerHomeChefBody">
-    <router-outlet></router-outlet>
-  </section>
-
-</section>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuService } from 'src/app/services/menu.service';
-import { Product } from 'src/waiter/waiter.service';
+import { Product } from 'src/app/waiterView/waiter.service';
 
 export interface Orders {
   cliente: string;
@@ -38,4 +38,5 @@ export class DeliveredStatusComponent implements OnInit {
 
     })
   }
+
 }
